@@ -2,14 +2,7 @@
 
 set -x
 
-MAVEN_VERSION=${MAVEN_VERSION:=3.9.4}
-QUARKUS_VERSION=${QUARKUS_VERSION:=3.3.3}
-NODE_VERSION=${NODE_VERSION:=v18.17.1}
-MANDREL_VERSION=${MANDREL_VERSION:=23.0.1.2-Final}
-KUBEDOCK_VERSION=${KUBEDOCK_VERSION:=0.13.0}
-GO_VERSION=${GO_VERSION:=1.21.1}
-OPERATOR_SDK_VERSION=${OPERATOR_SDK_VERSION:=v1.31.0}
-TOOLS_DIR=${TOOLS_DIR:=/tools}
+TOOLS_DIR=/tools
 
 rm -rf ${TOOLS_DIR}
 mkdir -p ${TOOLS_DIR}/bin
@@ -24,8 +17,8 @@ rm -rf "${TEMP_DIR}"
 ## Install Mandrel (GraalVM)
 TEMP_DIR="$(mktemp -d)"
 mkdir -p ${TOOLS_DIR}/graalvm 
-curl -fsSL -o ${TEMP_DIR}/mandrel-java17-linux-amd64-${MANDREL_VERSION}.tar.gz https://github.com/graalvm/mandrel/releases/download/mandrel-${MANDREL_VERSION}/mandrel-java17-linux-amd64-${MANDREL_VERSION}.tar.gz 
-tar xzf ${TEMP_DIR}/mandrel-java17-linux-amd64-${MANDREL_VERSION}.tar.gz -C ${TOOLS_DIR}/graalvm --strip-components=1 
+curl -fsSL -o ${TEMP_DIR}/mandrel-${MANDREL_JAVA_VERSION}-linux-amd64-${MANDREL_VERSION}.tar.gz https://github.com/graalvm/mandrel/releases/download/mandrel-${MANDREL_VERSION}/mandrel-${MANDREL_JAVA_VERSION}-linux-amd64-${MANDREL_VERSION}.tar.gz 
+tar xzf ${TEMP_DIR}/mandrel-${MANDREL_JAVA_VERSION}-linux-amd64-${MANDREL_VERSION}.tar.gz -C ${TOOLS_DIR}/graalvm --strip-components=1 
 rm -rf "${TEMP_DIR}"
 
 ## Install YQ

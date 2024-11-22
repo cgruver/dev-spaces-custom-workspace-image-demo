@@ -11,13 +11,6 @@ projects:
       checkoutFrom:
         remote: origin
         revision: main
-  - name: redhat-cop-devspaces-images
-    git:
-      remotes:
-        origin: https://github.com/cgruver/redhat-cop-devspaces-images.git
-      checkoutFrom:
-        remote: origin
-        revision: main
 components:
 - name: dev-tools
   attributes:
@@ -38,8 +31,11 @@ components:
   #     securityContext:
   #       procMount: Unmasked
   container:
-    image: quay.io/cgruver0/che/cekit-builder:latest
+    image: quay.io/cgruver0/che/custom-workspace:latest
+    memoryRequest: 512Mi
     memoryLimit: 6Gi
+    cpuRequest: 50m
+    cpuLimit: 2000m
     mountSources: true
     env:
     - name: SHELL
